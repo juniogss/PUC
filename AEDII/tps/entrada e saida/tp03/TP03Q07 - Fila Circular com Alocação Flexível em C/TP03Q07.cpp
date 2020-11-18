@@ -138,6 +138,7 @@ void lerJogadores(Jogador players[])
 
 	fclose(arquivo);
 }
+
 typedef struct Celula
 {
 	Jogador elemento;	 // Elemento inserido na celula.
