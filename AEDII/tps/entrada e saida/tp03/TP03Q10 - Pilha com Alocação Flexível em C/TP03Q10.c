@@ -219,60 +219,50 @@ void mostrar(Celula *cel, int pos)
 		imprimir(&cel->elemento, pos);
 	}
 }
+// int funcao(int a, int b, int *c)
+// {
+// 	*c = a - b;
+// 	return a * (b + 1);
+// }
+
+// #define R 10
+// #define C 20
+
+void fun(int *p){
+	int q = 10;
+	p = &q;
+}
 
 int main()
 {
-	Jogador players[10000];
-	lerJogadores(players);
-	int i = 0;
+	int r = 20;
+	int *p = &r;
+	fun(p);
+	printf("%d", *p);
 
-	start();
+	// int *p;
+	// int x = 5;
+	// p = &x;
 
-	// Leitura da entrada
-	char linha[TAM_MAX_LINHA];
-	scanf("%s", linha);
+	// int a = 5, *b, c = 10;
+	// b = &a;
+	// scanf("%d", b);
+	// printf("%d %d", a, c);
 
-	while (strcmp(linha, "FIM") != 0)
-	{
-		int id = atoi(linha);
-		if (id == 223)
-		{
-			id = 222;
-		}
+	// int *p;
+	// int v[] = {10, 7, 2, 6, 3};
+	// p = v;
 
-		inserir(players[id]);
-		scanf("%s", linha);
-		i++;
-	}
+	// printf("%d", p[4]);
 
-	scanf("%s", linha);
-	int size = atoi(linha);
+	// int x = 1, y = 2, w = 3;
+	// int z = funcao(x, y, &w);
+	// printf("%d %d\n", w, z);
 
-	for (size_t x = 0; x < size; x++)
-	{
-		scanf("%s", linha);
-
-		char delim[] = " ";
-		char *ptr = strtok(linha, delim);
-
-		if (strcmp(ptr, "I") == 0)
-		{
-			scanf("%s", linha);
-			int id = atoi(strtok(linha, delim));
-
-			inserir(players[id]);
-			i++;
-		}
-
-		if (strcmp(ptr, "R") == 0)
-		{
-			Jogador jogador = remover();
-			printf("(R) %s\n", jogador.nome);
-			i--;
-		}
-	}
-
-	mostrar(topo, i);
+	// int (*p)[R][C];
+	// printf("%d", (int)sizeof(*p));
 
 	return 0;
+
 }
+
