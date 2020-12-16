@@ -1,10 +1,15 @@
 import java.io.*;
 import java.util.Formatter;
 import java.util.Scanner;
+
 import java.io.File;
 import java.nio.charset.*;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.time.*;
+import java.net.*;
+import java.time.format.*;
+import java.util.*;
 
 class Jogador {
 
@@ -99,10 +104,10 @@ class Jogador {
     /**
      * Imprimir linha com valores das chaves
      */
-    public String imprimir() {
-        String print = "[" + getId() + " ## " + getNome() + " ## " + getAltura() + " ## "
+    public String imprimir(int pos) {
+        String print = "[" + pos + "] ## " + getNome() + " ## " + getAltura() + " ## "
                 + String.valueOf(getPeso()).replace(".0", "") + " ## " + getAnoNascimento() + " ## " + getUniversidade()
-                + " ## " + getCidadeNascimento() + " ## " + getEstadoNascimento() + "]";
+                + " ## " + getCidadeNascimento() + " ## " + getEstadoNascimento() + " ##";
 
         return print;
     }
@@ -124,25 +129,83 @@ class Jogador {
     }
 }
 
-public class Classe {
+class HashReHash {
+    private int tamTab;
+    private Jogador[] tabela;
+    public int cmp;
+
+    public HashReHash(int tamTab) {
+        this.tamTab = tamTab;
+        this.tabela = new Jogador[tamTab];
+    }
+
+    private int transformacao(int altura) {
+        return altura % tamTab;
+    }
+
+    private int transformacao2(int id) {
+        return ++id % tamTab;
+    }
+
+    public void inserir(Jogador x) {
+        int pos = transformacao(x.getAltura());
+        cmp++;
+        if (tabela[pos] == null) {
+            tabela[pos] = x;
+        } else if (tabela[pos = transformacao2(x.getId())] == null) {
+            tabela[pos] = x;
+        }
+    }
+
+    public boolean pesquisar(String nome) {
+        boolean resp = false;
+        for (int i = 0; i < tamTab; i++) {
+            cmp++;
+            if (tabela[i] != null && tabela[i].getNome().equals(nome)) {
+                resp = true;
+                i = tamTab;
+            }
+        }
+        return resp;
+    }
+}
+
+public class TP05Q02 {
 
     public static void main(String[] args) throws Exception {
 
         Jogador[] players = getPlayers();
-
         String entrada = MyIO.readLine();
+        HashReHash hash = new HashReHash(25);
+
+        long comeco = System.currentTimeMillis();
 
         while (!entrada.contains("FIM")) {
-            MyIO.println(players[Integer.parseInt(entrada)].imprimir());
+            hash.inserir(players[Integer.parseInt(entrada) == 223 ? 222 : Integer.parseInt(entrada)]);
             entrada = MyIO.readLine();
         }
+
+        entrada = MyIO.readLine();
+
+        while (!entrada.contains("FIM")) {
+            System.out.print(entrada);
+            MyIO.println((hash.pesquisar(entrada)) ? " SIM" : " NAO");
+            entrada = MyIO.readLine();
+        }
+
+        long fim = System.currentTimeMillis();
+        long tempo = fim - comeco;
+        Arq.openWrite("633516_hashRehash.txt");
+        Arq.print("633516\t" + tempo + "\t" + hash.cmp);
+        Arq.close();
+
     }
 
     private static Jogador[] getPlayers() {
         Arq.openRead("/tmp/players.csv");
-        String linha = Arq.readLine();
+        Arq.readLine();
 
-        Jogador[] players = new Jogador[4000];
+        Jogador[] players = new Jogador[8000];
 
         while (Arq.hasNext()) {
             Jogador player = new Jogador();

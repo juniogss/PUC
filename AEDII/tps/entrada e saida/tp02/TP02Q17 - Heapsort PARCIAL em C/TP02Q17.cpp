@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define TAM_MAX_LINHA 2504
+int comp = 0;
+int tam = 0;
 
 typedef struct
 {
@@ -134,102 +137,93 @@ void lerJogadores(Jogador jogadores[])
 	fclose(arquivo);
 }
 
-// PROCEDIMENTO PARA TROCAR DOIS ELEMENTOS DO VETOR
-void swap(int *i, int *j, Jogador jogadores[])
+void log(long cronometro)
 {
-	Jogador temp = jogadores[*i];
-	jogadores[*i] = jogadores[*j];
-	jogadores[*j] = temp;
+	FILE *arq;
+	arq = fopen("633516_heapsortParcial.txt", "w");
+	fprintf(arq, "633516\t%ld\t%d", cronometro, comp);
+	fclose(arq);
 }
 
-int compare(Jogador a, Jogador b)
+void swap(Jogador vet[], int pos1, int pos2)
+{
+	Jogador aux = vet[pos2];
+	vet[pos2] = vet[pos1];
+	vet[pos1] = aux;
+}
+
+int compare(int a, int b, Jogador jogadores[])
 {
 
-	if (a.altura > b.altura)
+	if (jogadores[a].altura > jogadores[b].altura)
 		return 1;
-	else if (a.altura < b.altura)
+	else if (jogadores[a].altura < jogadores[b].altura)
 		return -1;
 	else
 	{
-		if (strcmp(a.nome, b.nome) > 0)
+		if (strcmp(jogadores[a].nome, jogadores[b].nome) > 0)
 			return 1;
-		else if (strcmp(a.nome, b.nome) < 0)
+		else if (strcmp(jogadores[a].nome, jogadores[b].nome) < 0)
 			return -1;
 		else
 			return 0;
 	}
 }
-void construir(Jogador jogadores[], int tamHeap)
+
+void add(Jogador vet[], int n, Jogador x)
 {
-	for (int i = tamHeap; i > 1 && compare(jogadores[i], jogadores[i / 2]) > 0; i /= 2)
+	int pos = tam;
+	vet[tam] = x;
+	tam++;
+	while (pos > 0)
 	{
-		int x = i/2;
-		swap(&i, &x, jogadores);
-	}
-}
-//=============================================================================
-int getMaiorFilho(Jogador jogadores[], int i, int tamHeap)
-{
-	int filho;
-	if (2 * i == tamHeap || compare(jogadores[2 * i], jogadores[2 * i + 1]) > 0)
-	{
-		filho = 2 * i;
-	}
-	else
-	{
-		filho = 2 * i + 1;
-	}
-	return filho;
-}
-//=============================================================================
-void reconstruir(Jogador jogadores[], int tamHeap)
-{
-	int i = 1;
-	while (i <= (tamHeap / 2))
-	{
-		int filho = getMaiorFilho(jogadores, i, tamHeap);
-		if (compare(jogadores[i], jogadores[filho]) < 0)
+		if (compare(((pos - 1) / 2), pos, vet) < 0)
 		{
-			swap(&i, &filho, jogadores);
-			i = filho;
+			comp++;
+			swap(vet, (pos - 1) / 2, pos);
+			pos = (pos - 1) / 2;
 		}
 		else
 		{
-			i = tamHeap;
+			pos = -1;
 		}
 	}
 }
-//=============================================================================
-void heapsort(Jogador jogadores[], int n)
+
+Jogador remove(int n, Jogador vet[])
 {
-	//Alterar o vetor ignorando a posicao zero
-	Jogador arrayTmp[n + 1];
+	Jogador removido = vet[0];
+	int i = 0;
+	int pos;
+	vet[0] = vet[--tam];
+
+	while (i < ((n - 1) / 2))
+	{
+		if (compare(i, (2 * i + 1), vet) < 0 || compare(i, (2 * i + 2), vet) < 0)
+		{
+			comp += 2;
+
+			pos = compare((2 * i + 1), (2 * i + 2), vet) > 0 ? 2 * i + 1 : 2 * i + 2;
+			swap(vet, i, pos);
+			i = pos;
+		}
+		else
+		{
+			i += n;
+		}
+	}
+	return removido;
+}
+
+void heap(Jogador vet[], int n)
+{
+	Jogador jogador[n];
+
 	for (int i = 0; i < n; i++)
-	{
-		arrayTmp[i + 1] = jogadores[i];
-	}
+		add(jogador, n, vet[i]);
 
-	//Contrucao do heap
-	for (int tamHeap = 2; tamHeap <= n; tamHeap++)
-	{
-		construir(arrayTmp, tamHeap);
-	}
-
-	//Ordenacao propriamente dita
-	int tamHeap = n;
-	while (tamHeap > 1)
-	{
-		int x = tamHeap--;
-		int y = 1;
-		swap(&y, &x, jogadores);
-		reconstruir(arrayTmp, tamHeap);
-	}
-
-	//Alterar o vetor para voltar a posicao zero
-	for (int i = 0; i < n; i++)
-	{
-		jogadores[i] = arrayTmp[i + 1];
-	}
+	for (int i = n - 1; i >= 0; i--)
+		vet[i] = remove(n--, jogador);
 }
 
 int main()
@@ -263,7 +257,26 @@ int main()
 		final[x] = aux[x];
 	}
 
-	heapsort(final, i);
+	long tempo = clock();
+
+	heap(final, i);
+
+	tempo = clock() - tempo;
+	log(tempo);
+
+	for (int i = (i - 1); i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if ((final[j].altura > final[j + 1].altura) 
+			|| ((strcmp(final[j].nome, final[j + 1].nome) > 0) && final[j].altura == final[j + 1].altura))
+			{
+				Jogador a = final[j];
+				final[j] = final[j + 1];
+				final[j + 1] = a;
+			}
+		}
+	}
 
 	for (size_t x = 0; x < 10; x++)
 	{
