@@ -413,7 +413,6 @@ void quicksortRec(int esq, int dir)
 {
 	int i = esq, j = dir;
 	Jogador pivo = getCel((dir + esq) / 2)->elemento;
-	// Jogador pivo = jogadores[(dir + esq) / 2];
 	while (i <= j)
 	{
 		while (compare(getCel(i)->elemento, pivo) <= -1)

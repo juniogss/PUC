@@ -11,12 +11,52 @@ import java.net.*;
 import java.time.format.*;
 import java.util.*;
 
+public class TP05Q04 {
+
+    public static void main(String[] args) {
+
+        Jogador[] players = getPlayers();
+        String entrada = MyIO.readLine();
+        Doidona doida = new Doidona();
+
+        while (!entrada.contains("FIM")) {
+            doida.Inserir(players[Integer.parseInt(entrada) == 223 ? 222 : Integer.parseInt(entrada)]);
+            entrada = MyIO.readLine();
+        }
+
+        entrada = MyIO.readLine();
+
+        while (!entrada.contains("FIM")) {
+            System.out.print(entrada);
+            MyIO.println(doida.search(entrada) ? " SIM" : " NAO");
+            entrada = MyIO.readLine();
+        }
+    }
+
+    private static Jogador[] getPlayers() {
+        Arq.openRead("/tmp/players.csv");
+        Arq.readLine();
+
+        Jogador[] players = new Jogador[8000];
+
+        while (Arq.hasNext()) {
+            Jogador player = new Jogador();
+            player.ler(Arq.readLine());
+            players[player.getId()] = player;
+        }
+
+        Arq.close();
+
+        return players;
+    }
+}
+
 class Jogador {
 
     private int id;
     private String nome;
     private int altura;
-    private double peso;
+    private int peso;
     private String universidade;
     private int anoNascimento;
     private String cidadeNascimento;
@@ -25,7 +65,7 @@ class Jogador {
     public Jogador() {
     }
 
-    public Jogador(int id, String nome, int altura, double peso, String universidade, int anoNascimento,
+    public Jogador(int id, String nome, int altura, int peso, String universidade, int anoNascimento,
             String cidadeNascimento, String estadoNascimento) {
         this.id = id;
         this.nome = nome;
@@ -61,11 +101,11 @@ class Jogador {
         this.altura = altura;
     }
 
-    public double getPeso() {
+    public int getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     }
 
@@ -129,169 +169,250 @@ class Jogador {
     }
 }
 
-class DoidonaComTADsProntas {
-    final int TAMT1 = 100;
-    final int TAMT3 = 100;
-    final int NULO = -0x7FFFFF;
+class Celula {
+    public Jogador elemento;
+    public Celula prox;
 
-    int[] t1;
-    int[] t3;
-
-    ArvoreBinaria arvoreBinaria;
-    ListaSimples lista;
-    AVL arvoreAVL;
-
-    public Doidona(){
-       t1 = new int [TAMT1];
-       t3 = new int [TAMT3];
- 
-       for(int i = 0; i < TAMT1; i++){
-          t1[i] = NULO;
-       }
-       for(int i = 0; i < TAMT3; i++){
-          t3[i] = NULO;
-       }
- 
-       arvoreBinaria = new ArvoreBinaria();
-       arvoreAVL = new AVL();
-       lista = new ListaSimples();
+    public Celula() {
+        this(null);
     }
 
-    public int hashT1(int elemento) {
+    public Celula(Jogador elemento) {
+        this.elemento = elemento;
+        this.prox = null;
+    }
+}
+
+class No {
+    public Jogador elemento;
+    public No esq, dir;
+
+    public No(Jogador elemento) {
+        this(elemento, null, null);
     }
 
-    public int hashT2(int elemento) {
-        return elemento % 3;
+    public No(Jogador elemento, No esq, No dir) {
+        this.elemento = elemento;
+        this.esq = esq;
+        this.dir = dir;
+    }
+}
+
+class Lista {
+    public Celula primeiro;
+    public Celula ultimo;
+
+    public Lista() {
+        primeiro = new Celula();
+        ultimo = primeiro;
     }
 
-    public int hashT3(int elemento) {
+    public int tamanho() {
+        int tamanho = 0;
+        for (Celula i = primeiro; i != ultimo; i = i.prox, tamanho++)
+            ;
+        return tamanho;
     }
 
-    public int rehashT3(int elemento) {
+    public void inserirFim(Jogador j) {
+        ultimo.prox = new Celula(j);
+        ultimo = ultimo.prox;
     }
 
-    public void inserir(int elemento) {
-        int i = hashT1(elemento);
-        if (elemento == NULO) {
-            // ????
-        } else if (t1[i] == NULO) {
-            t1[i] = elemento;
-        } else if (hashT2(elemento) == 0) {
-            i = hashT3(elemento);
-
-            if (t3[i] == NULO) {
-                t3[i] = elemento;
-            } else {
-                i = rehashT3(elemento);
-
-                if (t3[i] == NULO) {
-                    t3[i] = elemento;
-                } else {
-                    arvoreBinaria.inserir(elemento);
-                }
-            }
-        } else if (hashT2(elemento) == 1) {
-            lista.inserirFim(elemento);
-        } else if (hashT2(elemento) == 2) {
-            arvoreAVL.inserir(elemento);
-        } else {
-            System.out.println("ERRO!!!!");
-        }
-    }
-
-    void remover(int valor) {
-    }
-
-    boolean pesquisar(int valor) {
+    public boolean pesquisar(String j) {
         boolean resp = false;
-        int pos = hashT1(valor);
-        if (t1[pos] == valor) {
-            resp = true;
-        } else {
-            pos = hashT2(valor);
-            if (pos == 0) {
-                pos = hashT3(valor);
-                if (t3[pos] == valor) {
-                    resp = true;
-                } else {
-                    pos = rehashT3(valor);
-                    if (t3[pos] == valor) {
-                        resp = true;
-                    } else {
-                        resp = arvoreBinaria.pesquisar(valor);
-                    }
-                }
-            } else if (pos == 1) {
-                resp = lista.pesquisar(valor);
-            } else {
-                resp = arvoreAVL.pesquisar(valor);
+        for (Celula i = primeiro.prox; i != null; i = i.prox) {
+            if (i.elemento.getNome().equals(j)) {
+                resp = true;
+                i = ultimo;
             }
         }
         return resp;
     }
 
-    void mostrar() {
-        for (int i = 0; i < TAMT1; i++) {
-            if (t1[i] != NULO) {
-                System.out.println(t1[i]);
-            }
+    public void mostrar() {
+        for (Celula i = primeiro.prox; i != null; i = i.prox) {
+            System.out.println(i.elemento + " ");
         }
-        for (int i = 0; i < TAMT3; i++) {
-            if (t3[i] != NULO) {
-                System.out.println(t3[i]);
-            }
-        }
-        arvoreBinaria.mostrar();
-        lista.mostrar();
-        arvoreAVL.mostrar();
     }
 }
 
-public class TP05Q04 {
+class ArvoreBinaria {
+    public No raiz;
 
-    public static void main(String[] args) throws Exception {
-
-        Jogador[] players = getPlayers();
-        String entrada = MyIO.readLine();
-        HashLista hash = new HashLista(25);
-
-        long comeco = System.currentTimeMillis();
-
-        while (!entrada.contains("FIM")) {
-            hash.inserir(players[Integer.parseInt(entrada) == 223 ? 222 : Integer.parseInt(entrada)]);
-            entrada = MyIO.readLine();
-        }
-
-        entrada = MyIO.readLine();
-
-        while (!entrada.contains("FIM")) {
-            System.out.print(entrada);
-            MyIO.println((hash.pesquisar(entrada)) ? " SIM" : " NAO");
-            entrada = MyIO.readLine();
-        }
-
-        long fim = System.currentTimeMillis();
-        long tempo = fim - comeco;
-        Arq.openWrite("633516_hashIndireta.txt");
-        Arq.print("633516\t" + tempo + "\t" + hash.cmp);
-        Arq.close();
-
+    public ArvoreBinaria() {
+        raiz = null;
     }
 
-    private static Jogador[] getPlayers() {
-        Arq.openRead("/tmp/players.csv");
-        Arq.readLine();
-
-        Jogador[] players = new Jogador[8000];
-
-        while (Arq.hasNext()) {
-            Jogador player = new Jogador();
-            player.ler(Arq.readLine());
-            players[player.getId()] = player;
-        }
-
-        Arq.close();
-
-        return players;
+    public boolean pesquisar(String x) {
+        System.out.print(" raiz");
+        return pesquisar(x, raiz);
     }
+
+    private boolean pesquisar(String x, No i) {
+        boolean resp;
+        if (i == null) {
+            resp = false;
+        } else if (x.compareTo(i.elemento.getNome()) == 0) {
+            resp = true;
+        } else if (x.compareTo(i.elemento.getNome()) < 0) {
+            System.out.print(" esq");
+            resp = pesquisar(x, i.esq);
+        } else {
+            System.out.print(" dir");
+            resp = pesquisar(x, i.dir);
+        }
+        return resp;
+    }
+
+    public void inserir(Jogador j) {
+        raiz = inserir(j, raiz);
+    }
+
+    private No inserir(Jogador j, No i) {
+        if (i == null) {
+            i = new No(j);
+        } else if (j.getNome().compareTo(i.elemento.getNome()) < 0) {
+            i.esq = inserir(j, i.esq);
+        } else if (j.getNome().compareTo(i.elemento.getNome()) > 0) {
+            i.dir = inserir(j, i.dir);
+        } else {
+            System.out.println("Erro ao inserir!");
+        }
+        return i;
+    }
+}
+
+class HashReserva {
+    Jogador tabela[];
+    int m1, m2, m, reserva;
+
+    public HashReserva() {
+        this(11, 0);
+    }
+
+    public HashReserva(int m1, int m2) {
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m = m1 + m2;
+        this.tabela = new Jogador[this.m];
+        for (int i = 0; i < m; i++) {
+            tabela[i] = null;
+        }
+        reserva = 0;
+    }
+
+    public int h(int altura) {
+        return altura % m1;
+    }
+
+    public boolean inserir(Jogador elemento) {
+        boolean resp = false;
+        if (elemento != null) {
+            int pos = h(elemento.getAltura());
+            if (tabela[pos] == null) {
+                tabela[pos] = elemento;
+                resp = true;
+            }
+        }
+        return resp;
+    }
+
+    public boolean pesquisar(String Player) {
+        int pos = -1;
+        for (int i = 0; i < m; i++) {
+            if (tabela[i] != null && tabela[i].getNome().equals(Player)) {
+                pos = i;
+                i = m;
+            }
+        }
+        return pos != -1;
+    }
+}
+
+class HashRehash {
+    Jogador tabela[];
+    int m;
+
+    public HashRehash() {
+        this(9);
+    }
+
+    public HashRehash(int m) {
+        this.m = m;
+        this.tabela = new Jogador[this.m];
+        for (int i = 0; i < m; i++) {
+            tabela[i] = null;
+        }
+    }
+
+    public int h(int altura) {
+        return altura % m;
+    }
+
+    public int reh(int altura) {
+        return ++altura % m;
+    }
+
+    public boolean inserir(Jogador elemento) {
+        boolean resp = false;
+        if (elemento != null) {
+            int pos = h(elemento.getAltura());
+            if (tabela[pos] == null) {
+                tabela[pos] = elemento;
+                resp = true;
+            } else {
+                pos = reh(elemento.getAltura());
+                if (tabela[pos] == null) {
+                    tabela[pos] = elemento;
+                    resp = true;
+                }
+            }
+        }
+        return resp;
+    }
+
+    public boolean pesquisar(String Player) {
+        int pos = -1;
+        for (int i = 1; i < m; i++) {
+            if (tabela[i] != null && tabela[i].getNome().equals(Player)) {
+                pos = i;
+                i = m;
+            }
+        }
+        return pos != -1;
+    }
+}
+
+class Doidona {
+    HashReserva T1;
+    HashRehash T2;
+    Lista T3;
+    ArvoreBinaria T4;
+
+    public Doidona() {
+        T1 = new HashReserva();
+        T2 = new HashRehash();
+        T3 = new Lista();
+        T4 = new ArvoreBinaria();
+    }
+
+    public void Inserir(Jogador x) {
+        boolean wasInserted = T1.inserir(x);
+        if (!wasInserted) {
+            int hashValue = x.getAltura() % 3;
+            if (hashValue < 1) {
+                T2.inserir(x);
+            } else if (hashValue < 2) {
+                T3.inserirFim(x);
+            } else {
+                T4.inserir(x);
+            }
+        }
+    }
+
+    public boolean search(String x) {
+        return T1.pesquisar(x) || T2.pesquisar(x) || T3.pesquisar(x) || T4.pesquisar(x);
+    }
+
 }
