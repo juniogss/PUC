@@ -1,0 +1,42 @@
+Instruções para entrega:
+0. Colocar nome e matrícula 
+   em todos os arquivos com texto 
+   (e como comentários iniciais em programas).
+   Formatos: .V, .VCD, .C, .CPP, .JAVA, .PY, .TXT, .RTF ou .XLS 
+   (NÃO USAR .DOC, .DOCX, .XLSX ou .PDF).
+   Evitar espaços em branco em nomes de arquivos.
+1. Criar uma pasta com o número de matrícula e nome
+   (por exemplo, 999999-XXX_YYY_ZZZ).
+   Evitar espaços em branco, acentos e cedilha
+   em nomes de pastas.
+2. Colocar nessa pasta todos os arquivos 
+   relativos à atividade
+   Evitar espaços em branco, acentos e cedilha
+   em nomes de arquivos.
+   Os códigos fontes deverão estar em formatos compatíveis
+   para a compilação e testes (ou simulações).
+3. Colocar nessa pasta todos os arquivos 
+   relativos à atividade.
+   Arquivos intermediários (.o) ou executáveis (.exe)
+   deverão ser excluídos.
+4. Comprimir a pasta (999999.ZIP)
+   Evitar outros tipos de compactação (.RAR,.GZ,.7Z).
+5. Entregar o arquivo compactado (999999.ZIP)
+   na atividade aberta correspondente
+6. Exercícios em atraso poderão ser entregues 
+   em pastas separadas, devidamente identificadas,
+   mas estarão sujeitos aos critérios usados 
+   para entregas em atraso, independente do motivo.
+
+Sugestão:
+   Tentar entregar os exercícios com antecipação.
+   Estabelecer como rotina pelo menos uma hora 
+   antes do prazo estipulado. Caso necessário,
+   ainda haverá uma hora para alterações e reenvio.
+
+Observações:
+   Exercícios entregues com muito atraso  
+   NÃO serão considerados para efeito de avaliação.
+   
+   Em virtude de recesso ou feriado, 
+   datas de entregas poderão ser antecipadas.

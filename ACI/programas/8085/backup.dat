@@ -1,0 +1,16 @@
+true
+; Somar dois numeros de 8 bits
+; Armazenar o primeiro dado em D0000
+; Armazenar o segundo dado em D0001
+; Armazenar o resultado em D0003
+; Area de codigo ; Significado      ; Comentario
+   LXI H,0050        ; HL <- addr(dado1) ; endereco do dado1
+   MOV A,M           ; A <- MEM [HL] ; A = MEM [dado1]
+   INX H                 ; HL <- HL+1 ; endereco do dado2
+   ADD M               ; A <- A + MEM [HL] ; A = A + MEM [dado2]
+   STA 0052          ; MEM [dado3] <- A ; MEM [dado3] = A
+   HLT ; halt           ; parar
+; Dados
+; 0050: 02h
+; 0051: 03h
+; 0052: 00h

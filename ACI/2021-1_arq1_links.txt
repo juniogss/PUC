@@ -1,0 +1,108 @@
+PUC-Minas
+Instituto de Ciências Exatas e Informática
+Curso de Ciência da Computação
+Arquitetura de Computadores I
+
+Links recomendados
+
+Online Verilog compilers
+
+https://hdlbits.01xz.net/wiki/Iverilog                   
+http://www.techep.csi.cuny.edu/~zhangs/v.html
+https://www.edaplayground.com
+https://www.tutorialspoint.com/compile_verilog_online.php
+https://www.jdoodle.com/execute-verilog-online/
+
+Online logic circuit simulator
+
+https://circuitverse.org/simulator
+
+
+Download recommended versions
+
+As versões recomendadas já constam do material disponível no Canvas.
+
+http://sourceforge.net/projects/iverilog/
+    Icarus Verilog Interactive compiler & simulator     
+    Versão recomendada: 12 (modificada) com GTKWave (3.3.100)
+                        no pacote de programas distribuído. 
+    Pacote para Verilog e para visualização de ondas
+    Obs.: O pacote pode ser encontrado para cópia local em 
+          W:\Ciencia_da_Computacao\2_Periodo\ARQ1_Manha\2020-1\Downloads\site\
+          O pacote também pode ser encontrado para cópia em 
+          ftp://ftp.pucmg.br/pub/Computação/Mais_Utilizados/Programacao_Hardware/ARQ1/2021-1_arq1_programas.zip
+          ftp://ftp.pucmg.br/pub/Computação/Mais_Utilizados/Programacao_Hardware/Icarus_Verilog/Icarus_Verilog_v12.zip
+
+    Para Windows:
+          Necessário ajustar a variável de ambiente PATH
+          para incluir a pasta onde estiver o compilador
+          e o visualizador de cartas de tempo
+          
+          C:\...\Icarus_Verilog\bin
+          C:\...\Icarus_Verilog\gtkwave\bin 
+
+    IMPORTANTE:
+          Existe uma versão mais nova do compilador,
+          entretanto, por ainda ser a de desenvolvimento e
+          poder apresentar problemas de execução,
+          em alguns casos, seu uso não é recomendado.
+
+    Para Linux:
+          $apt install iverilog gtkwave
+
+https://logisim.altervista.org/
+    Editor e simulador de circuitos lógicos
+    Versão recomendada: 2.16.y.z (18/05/2020) ou superior 
+    Obs.: O pacote pode ser encontrado para cópia local em 
+          W:\Ciencia_da_Computacao\2_Periodo\ARQ1_Manha\2020-1\Downloads\site\
+          O programa também pode ser encontrado para cópia local em
+          ftp://ftp.pucmg.br/pub/Computação/Mais_Utilizados/Programacao_Hardware/Logisim/logisim_v2_15_0_2.zip
+          
+    IMPORTANTE:
+          Existe uma versão mais nova do simulador,
+          ainda em testes, pode apresentar problemas 
+          com os modelos mais antigos, em alguns casos, 
+          seu uso não é recomendado.
+
+http://www.cs.duke.edu/csed/jflap/jflaptmp/
+    Versão recomendada: JFLAP v7.1 (JFLAP_Thin.jar) (27/07/2018)    
+    Pacote para Máquinas de Estados Finitos
+    Obs.: O programa também pode ser encontrado para cópia local em
+          W:\Ciencia_da_Computacao\2_Periodo\ARQ1_Manha\2020-1\Downloads\site\
+          O pacote também pode ser encontrado para cópia em 
+          ftp://ftp.pucmg.br/pub/Mais_Utilizados/Programacao_Hardware/JFLAP/JFLAP_v7_0
+     
+    IMPORTANTE:
+    A versão JFLAP8_beta.jar, mais nova, ainda em testes,
+    apresenta erros e NÃO é recomendada para uso.
+
+     
+http://www.cs.colby.edu/djskrien/CPUSim/
+    Versão recomendada: CPUSim v3.9.0
+    Simulador de conjunto de instruções
+    Obs.: O programa também pode ser encontrado para cópia local em
+          W:\Ciencia_da_Computacao\2_Periodo\ARQ1_Manha\2020-1\Downloads\site\
+          O pacote também pode ser encontrado para cópia em 
+          ftp://ftp.pucmg.br/pub/Mais_Utilizados/Programacao_Hardware/CPUSim/CPUSim_v3_9_0.zip
+
+    IMPORTANTE:
+    As versões mais recentes (4.0.xx), apresentam erros 
+    quando usadas com a versão mais recente do Java, 
+    e NÃO são recomendadas para uso.
+
+
+Links alternativos:
+
+http://www.sutherland-hdl.com/online_verilog_ref_guide/vlog_ref_top.html
+    Verilog reference card
+    Manual online para Verilog
+    (melhor copiar e instalar na pasta IVI\docs ou IVerilog\docs)
+    Obs.: O programa também pode ser encontrado para cópia local em
+          ftp://ftp.pucmg.br/pub/Mais_Utilizados/Programacao_Hardware/Icarus_Verilog/verilog_ref_guide.zip
+
+
+
+Qualquer dúvida sobre o uso dos programas acima
+deverá ser encaminhada ao professor, aos monitores
+ou pessoal técnico do Instituto de Informática.
+ 
