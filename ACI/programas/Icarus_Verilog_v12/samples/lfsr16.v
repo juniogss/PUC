@@ -107,3 +107,4 @@ end
 endmodule
 
 `endif // LFSR16_V_
+vvp
