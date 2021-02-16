@@ -1,9 +1,9 @@
 /*
-    Arquitetura de Computadores I - Guia_0102.
+    Arquitetura de Computadores I - Guia_0104.
     Nome: Junio Gabriel Silva Santos
     Matricula: 633516
 */
-module G01Q02;
+module G01Q04;
 
   integer n1 = 0;    // decimal
   integer n2 = 0;    // decimal
@@ -26,7 +26,7 @@ module G01Q02;
     n4 = d;
     n5 = e;
 
-    $display ( "Guia 01 Quastão 02" );
+    $display ( "Guia 01 Quastão 04" );
 
     $display ( "a) = %d", n1 );
     $display ( "b) = %d", n2 );
@@ -38,10 +38,10 @@ module G01Q02;
 endmodule
 
 /** SAÍDA
-Guia 01 Questão 02
+Guia 01 Questão 04
 a) =          21
 b) =          26
 c) =          41
-d) =          57
+d) =          32 30 32 31 2d 31
 e) =          35
 */

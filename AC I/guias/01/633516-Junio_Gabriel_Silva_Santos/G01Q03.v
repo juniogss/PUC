@@ -25,7 +25,7 @@ module G01Q03;
     $display ( "Guia 01 Quastão 03" );
 
     $display ( "a) = %8b", a );
-    $display ( "b) = %8b", b );
+    $display ( "b) = %4b", b );
     $display ( "c) = %x", c );
     $display ( "d) = %x", d );
     $display ( "e) = %x", e );
@@ -34,7 +34,7 @@ module G01Q03;
 endmodule
 
 /** SAÍDA
-Guia 01 Questão 03
+Guia 01 Quastão 03
 a) = 01001001
 b) = 00101111
 c) = 3d

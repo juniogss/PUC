@@ -38,7 +38,7 @@ module G01Q02;
 endmodule
 
 /** SAÍDA
-Guia 01 Questão 02
+Guia 01 Quastão 02
 a) =          21
 b) =          26
 c) =          41

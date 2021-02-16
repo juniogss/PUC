@@ -1,0 +1,39 @@
+    Arquitetura de Computadores I - Guia_01
+    Nome: Junio Gabriel Silva Santos
+    Matricula: 633516
+
+Guia 01 Questão 01
+a) = 00011011
+b) = 00110011
+c) = 0000001011001001
+d) = 0000000100111000
+e) = 0000000101101000
+
+Guia 01 Questão 02
+a) =          21
+b) =          26
+c) =          41
+d) =          57
+e) =          35
+
+Guia 01 Questão 03
+a) = 1021
+b) = 57
+c) = 3d
+d) = 9d
+e) = ab
+
+Guia 01 Questão 04
+a) =          103
+b) =          21
+c) =          2B
+d) =          41
+e) =          35
+
+Guia 01 Questão 05
+a) =          50 55 43 2d 4d 69 6e 61 73
+b) =          32 30 32 31 2d 31
+c) =          42 72 61 73 69 6c
+d) =          TARDE
+e) =          b.h-mg
+
