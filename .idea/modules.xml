@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AED II/provas/01/01.iml" filepath="$PROJECT_DIR$/AED II/provas/01/01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/provas/02/02.iml" filepath="$PROJECT_DIR$/AED II/provas/02/02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PUC.iml" filepath="$PROJECT_DIR$/PUC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U0 - Nivelamento/U0 - Nivelamento.iml" filepath="$PROJECT_DIR$/AED II/fonte/U0 - Nivelamento/U0 - Nivelamento.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U1 - Introdução/U1 - Introdução.iml" filepath="$PROJECT_DIR$/AED II/fonte/U1 - Introdução/U1 - Introdução.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U10 - Árvores TRIE/java/U10 - Árvores TRIE.iml" filepath="$PROJECT_DIR$/AED II/fonte/U10 - Árvores TRIE/java/U10 - Árvores TRIE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U4 - Ordenação em memória principal/U4 - Ordenação em memória principal.iml" filepath="$PROJECT_DIR$/AED II/fonte/U4 - Ordenação em memória principal/U4 - Ordenação em memória principal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U5 - Estruturas de dados basicas lineares/U5 - Estruturas de dados basicas lineares.iml" filepath="$PROJECT_DIR$/AED II/fonte/U5 - Estruturas de dados basicas lineares/U5 - Estruturas de dados basicas lineares.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U5 - Estruturas de dados lineares e flexíveis/U5 - Estruturas de dados lineares e flexíveis.iml" filepath="$PROJECT_DIR$/AED II/fonte/U5 - Estruturas de dados lineares e flexíveis/U5 - Estruturas de dados lineares e flexíveis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U6 - Estruturas de dados básicas flexíveis/U6 - Estruturas de dados básicas flexíveis.iml" filepath="$PROJECT_DIR$/AED II/fonte/U6 - Estruturas de dados básicas flexíveis/U6 - Estruturas de dados básicas flexíveis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U6 - Árvores binárias/U6 - Árvores binárias.iml" filepath="$PROJECT_DIR$/AED II/fonte/U6 - Árvores binárias/U6 - Árvores binárias.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U7 - Balanceamento de árvores/U7 - Balanceamento de árvores.iml" filepath="$PROJECT_DIR$/AED II/fonte/U7 - Balanceamento de árvores/U7 - Balanceamento de árvores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U7 - Árvores binárias/U7 - Árvores binárias.iml" filepath="$PROJECT_DIR$/AED II/fonte/U7 - Árvores binárias/U7 - Árvores binárias.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U8 - Balanceamento de árvores/U8 - Balanceamento de árvores.iml" filepath="$PROJECT_DIR$/AED II/fonte/U8 - Balanceamento de árvores/U8 - Balanceamento de árvores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U8 - Tabelas e dicionários/U8 - Tabelas e dicionários.iml" filepath="$PROJECT_DIR$/AED II/fonte/U8 - Tabelas e dicionários/U8 - Tabelas e dicionários.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U9 - Tabelas e dicionários/U9 - Tabelas e dicionários.iml" filepath="$PROJECT_DIR$/AED II/fonte/U9 - Tabelas e dicionários/U9 - Tabelas e dicionários.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U9 - Árvores TRIE/java/U9 - Árvores TRIE.iml" filepath="$PROJECT_DIR$/AED II/fonte/U9 - Árvores TRIE/java/U9 - Árvores TRIE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/ajuda/ajuda.iml" filepath="$PROJECT_DIR$/AED II/fonte/ajuda/ajuda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/ajuda/ajuda1.iml" filepath="$PROJECT_DIR$/AED II/ajuda/ajuda1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/labs/labs.iml" filepath="$PROJECT_DIR$/AED II/labs/labs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/provas/provas.iml" filepath="$PROJECT_DIR$/AED II/provas/provas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/provas/02/teorica/teorica.iml" filepath="$PROJECT_DIR$/AED II/provas/02/teorica/teorica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tps/entrada e saida/tp01/tp01.iml" filepath="$PROJECT_DIR$/AED II/tps/entrada e saida/tp01/tp01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tps/entrada e saida/tp02/tp02.iml" filepath="$PROJECT_DIR$/AED II/tps/entrada e saida/tp02/tp02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tps/entrada e saida/tp03/tp03.iml" filepath="$PROJECT_DIR$/AED II/tps/entrada e saida/tp03/tp03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tps/entrada e saida/tp04/tp04.iml" filepath="$PROJECT_DIR$/AED II/tps/entrada e saida/tp04/tp04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tps/entrada e saida/tp05/tp05.iml" filepath="$PROJECT_DIR$/AED II/tps/entrada e saida/tp05/tp05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U9 - Árvores TRIE/java/trieVariacoes/trieVariacoes.iml" filepath="$PROJECT_DIR$/AED II/fonte/U9 - Árvores TRIE/java/trieVariacoes/trieVariacoes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/fonte/U10 - Árvores TRIE/java/trieVariacoes/trieVariacoes1.iml" filepath="$PROJECT_DIR$/AED II/fonte/U10 - Árvores TRIE/java/trieVariacoes/trieVariacoes1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AED II/tts/tts.iml" filepath="$PROJECT_DIR$/AED II/tts/tts.iml" />
+    </modules>
+  </component>
+</project>

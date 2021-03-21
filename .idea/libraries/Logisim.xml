@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Logisim">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AC I/programas/Logisim/Logisim_v2_16_1_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/AC I/programas/Logisim/logisim_evolution_v3_3_0-all.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

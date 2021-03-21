@@ -1,10 +1,14 @@
+package CRUD.generico;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.io.RandomAccessFile;
 import java.lang.reflect.Constructor;
 
-public class CRUD<T extends Registro> {
+public class CRUD<T extends Register> {
 
-    Constructor<T> constructor;
     protected RandomAccessFile arq;
+    Constructor<T> constructor;
 
     CRUD(Constructor<T> constructor, String fileName) throws Exception {
         this.constructor = constructor;
@@ -100,9 +104,7 @@ public class CRUD<T extends Registro> {
         return object;
     }
 
-    public boolean delete(int ID) throws Exception {
-
-        boolean operationStatus = false;
+    public void delete(int ID) throws Exception {
 
         if (ID > 0) {
             arq.seek(0);
@@ -132,7 +134,6 @@ public class CRUD<T extends Registro> {
                         founded = true;
                         arq.seek(lapidePos);
                         arq.writeByte(1);
-                        operationStatus = true;
                     }
                 } while (keepReading);
 
@@ -144,12 +145,10 @@ public class CRUD<T extends Registro> {
         } else
             System.out.println("DELETE: A exclusão do registro não foi concluida. O ID fornecido é invalido.");
 
-        return operationStatus;
     }
 
-    public boolean update(T object) throws Exception {
+    public void update(@NotNull T object) throws Exception {
 
-        boolean operationStatus = false;
         int ID = object.getID();
 
         if (ID > 0) {
@@ -178,7 +177,6 @@ public class CRUD<T extends Registro> {
                     if (arq.getFilePointer() >= arq.length())
                         keepReading = false;
                     if (lapide == 0 && ID == currentlyID) {
-                        operationStatus = true;
                         founded = true;
                         byte[] oldBa = new byte[regLength];
                         arq.seek(currentlyPos);
@@ -210,6 +208,5 @@ public class CRUD<T extends Registro> {
         } else
             System.out.println("UPDATE: A atualizaçãp do registro não foi concluida. O ID fornecido é invalido.");
 
-        return operationStatus;
     }
 }

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Java">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AC I/programas/CPUSim_v3_9_0/CPUSim3.9.0.app/Contents/Resources/Java/CPUSimHelp3.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/AC I/programas/CPUSim_v3_9_0/CPUSim3.9.0.app/Contents/Resources/Java/jhall.jar!/" />
+      <root url="jar://$PROJECT_DIR$/AC I/programas/CPUSim_v3_9_0/CPUSim3.9.0.app/Contents/Resources/Java/CPUSim3.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

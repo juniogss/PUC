@@ -1,22 +1,13 @@
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+package CRUD.generico;
 
-public class EnergyDrink implements Registro {
+import java.io.*;
+
+public class EnergyDrink implements Register {
 
     protected int ID;
     protected String brand;
     protected String flavor;
     protected float price;
-
-    public EnergyDrink() {
-        this.ID = 1;
-        this.brand = "";
-        this.flavor = "";
-        this.price = 0;
-    }
 
     public EnergyDrink(String brand, String flavor, float price) {
         this.ID = -1;
