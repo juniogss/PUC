@@ -9,6 +9,13 @@ public class EnergyDrink implements Register {
     protected String flavor;
     protected float price;
 
+    public EnergyDrink() {
+        this.ID = -1;
+        this.brand = "";
+        this.flavor = "";
+        this.price = 0;
+    }
+
     public EnergyDrink(String brand, String flavor, float price) {
         this.ID = -1;
         this.brand = brand;

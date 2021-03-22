@@ -26,7 +26,7 @@ public class Main {
             System.out.println(arq.read(id3));
 
             System.out.println("\nUPDATE");
-            drink1.setFlavor("Fruras tropicais");
+            drink1.setFlavor("Frutas tropicais");
             drink1.setPrice(9.50F);
             arq.update(drink1);
             System.out.println(arq.read(id1));
