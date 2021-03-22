@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q01 - Palíndromo em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q03 - Ciframento em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q04 - Alteração Aleatória em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q06 - Is em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q08 - Leitura de Página HTML em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q09 - Arquivo em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q11 - RECURSIVO - Palíndromo em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q13 - RECURSIVO - Ciframento em Java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TP01Q15 - RECURSIVO - Is em Java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
