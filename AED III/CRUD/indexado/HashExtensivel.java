@@ -12,7 +12,7 @@ disciplina:
 Implementado pelo Prof. Marcos Kutova
 v1.1 - 2021
 */
-package HashExtensivel.aed3;
+package CRUD.indexado;
 
 import java.io.*;
 import java.lang.reflect.Constructor;

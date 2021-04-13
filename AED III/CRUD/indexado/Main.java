@@ -10,8 +10,15 @@ public class Main {
         EnergyDrink drink3 = new EnergyDrink("Loud", "Original", 8.00F);
 
         try {
-            new File("energeticos.db").delete();
-            CRUD<EnergyDrink> arq = new CRUD<>(EnergyDrink.class.getConstructor(), "energeticos.db");
+
+            File d = new File("db");
+            if (!d.exists()) d.mkdir();
+
+            new File("db/energetic.db").delete();
+            new File("db/energetic.hashd.db").delete();
+            new File("db/energetic.hashc.db").delete();
+
+            CRUD<EnergyDrink> arq = new CRUD<>(EnergyDrink.class.getConstructor(), "db/energetic.db");
 
             // Insere os 3 energeticos
             System.out.println("\nCREATE");
@@ -26,12 +33,12 @@ public class Main {
             System.out.println(arq.read(id3));
 
             System.out.println("\nUPDATE");
-            drink1.setFlavor("Frutas tropicais");
+            drink1.setFlavor("icais");
             drink1.setPrice(9.50F);
             arq.update(drink1);
             System.out.println(arq.read(id1));
 
-            drink2.setFlavor("Sem açúcar");
+            drink2.setFlavor("Sem açhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhúcar");
             drink2.setPrice(9.50F);
             arq.update(drink2);
             System.out.println(arq.read(id2));
@@ -41,6 +48,12 @@ public class Main {
             arq.delete(id1);
             EnergyDrink aux = arq.read(id1);
             System.out.println(aux == null ? "Energético excluído\n" : aux);
+
+            // Busca 3 energeticos
+            System.out.println("\nREAD");
+            System.out.println(arq.read(id1));
+            System.out.println(arq.read(id2));
+            System.out.println(arq.read(id3));
 
             arq.close();
 

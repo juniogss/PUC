@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 
 public class CRUD<T extends Register> {
 
+    private final HashExtensivel<PCVEnergyDrink> hash;
     protected RandomAccessFile file;
     Constructor<T> constructor;
 
@@ -12,6 +13,7 @@ public class CRUD<T extends Register> {
         this.constructor = constructor;
         file = new RandomAccessFile(fileName, "rw");
         file.writeInt(0);
+        hash = new HashExtensivel<>(PCVEnergyDrink.class.getConstructor(), 5, "db/energetic.hashd.db", "db/energetic.hashc.db");
     }
 
     public void close() throws Exception {
@@ -19,7 +21,7 @@ public class CRUD<T extends Register> {
     }
 
     /**
-     * Cria um objeto no arquivo
+     * Cria um objeto no file e adiciona o ID no indice
      *
      * @param object objeto
      * @return id do objeto criado
@@ -37,126 +39,116 @@ public class CRUD<T extends Register> {
 
         byte[] reg = object.toByteArray();
 
-        file.writeBoolean(true);     // válido
-        file.writeShort(reg.length);    // tamanho
-        file.write(reg);                // registro
+        file.writeBoolean(true);
+        file.writeShort(reg.length);
+        file.write(reg);
+
+        hash.create(new PCVEnergyDrink(object.getID(), pos));
 
         return object.getID();
     }
 
     /**
-     * Lê um registro do arquivo
+     * Lê um registro do file de acordo com o índice
      *
      * @param id identificador do registro
      * @return objeto do registro
      */
     public T read(int id) throws Exception {
-        T obj = null;
-        boolean found = false, isValid;
-        short size;
-        long lapPosition;
-        int objID;
 
-        if (id < 0) System.out.println("Registro Inválido");
-        else {
-            file.seek(4);
-            while (!found) {
-                isValid = file.readBoolean();
-                size = file.readShort();
-                lapPosition = file.getFilePointer();
-                objID = file.readInt();
-                file.seek(lapPosition + size);
+        PCVEnergyDrink read = hash.read(id);
+        if (read == null) return null;
 
-                if (file.getFilePointer() >= file.length()) found = true;
-                if (isValid && id == objID) {
-                    found = true;
-                    obj = constructor.newInstance();
-                    byte[] mByte = new byte[size];
-                    file.seek(lapPosition);
-                    file.read(mByte);
-                    obj.fromByteArray(mByte);
-                }
-            }
-        }
+        long position = read.getPosition();
+        if (position < 0) return null;
+
+        file.seek(position);
+        boolean lap = file.readBoolean();
+        int size = file.readShort();
+        long lapPosition = file.getFilePointer();
+        long objID = file.readInt();
+
+        if (!lap || objID != id) return null;
+
+        byte[] reg = new byte[size];
+        file.seek(lapPosition);
+        file.read(reg);
+
+        T obj = constructor.newInstance();
+        obj.fromByteArray(reg);
 
         return obj;
     }
 
     /**
-     * "Apaga" um registro do arquivo colocando uma flag <code>false</code> no lápide
+     * "Apaga" um registro do file colocando uma flag <code>false</code> no lápide
+     * e deleta a chave do índice
      *
      * @param id identificador do registro
      */
-    public void delete(int id) throws Exception {
-        if (id > 0) {
-            long lapidePos, currentLap;
-            boolean found = false, isValid;
-            short size;
-            int objID;
+    public boolean delete(int id) throws Exception {
 
-            file.seek(4);
+        PCVEnergyDrink cvp = hash.read(id);
+        if (cvp == null) return false;
 
-            while (!found) {
-                lapidePos = file.getFilePointer();
-                isValid = file.readBoolean();
-                size = file.readShort();
-                currentLap = file.getFilePointer();
-                objID = file.readInt();
-                file.seek(currentLap + size);
+        long position = cvp.getPosition();
+        if (position == -1) return false;
 
-                if (file.getFilePointer() >= file.length()) found = true;
-                if (isValid && id == objID) {
-                    found = true;
-                    file.seek(lapidePos);
-                    file.writeBoolean(false);
-                }
-            }
-        }
+        file.seek(position);
+        file.writeBoolean(false);
+
+        hash.delete(id);
+
+        return true;
     }
 
     /**
-     * Atualiza um registro no arquivo
+     * Atualiza um registro no file, se o tamanho for maior que o antigo,
+     * altera o lapide no file, cria um novo registro e atualiza o id no índice
      *
-     * @param newObj objeto a ser atualizado
+     * @param obj objeto a ser atualizado
      */
-    public void update(T newObj) throws Exception {
-        boolean found = false;
-        byte[] newByte = newObj.toByteArray();
-        if (newObj.getID() < 0) System.out.println("Registro Inválido");
-        else {
-            file.seek(4);
-            long lapPosition;
-            boolean lap;
-            short size;
-            while (!found) {
-                lapPosition = file.getFilePointer();
-                lap = file.readBoolean();
-                size = file.readShort();
-                byte[] mByte = new byte[size];
-                file.read(mByte);
+    public boolean update(T obj) throws Exception {
 
-                T obj = constructor.newInstance();
-                obj.fromByteArray(mByte);
-                if (file.getFilePointer() >= file.length()) found = true;
-                if (lap && newObj.getID() == obj.getID()) {
-                    file.seek(lapPosition);
-                    file.read(mByte);
-                    if (newByte.length <= mByte.length) {
-                        file.seek(lapPosition);
-                        file.writeBoolean(true);
-                        file.writeShort(mByte.length);
-                        file.write(newByte);
-                    } else {
-                        file.seek(lapPosition);
-                        file.writeBoolean(false);
-                        file.seek(file.length());
-                        file.writeBoolean(true);
-                        file.writeShort(newByte.length);
-                        file.write(newByte);
-                    }
-                    found = true;
-                }
-            }
+        PCVEnergyDrink read = hash.read(obj.getID());
+        if (read == null) return false;
+
+        long position = read.getPosition();
+        if (position < 0) return false;
+
+        file.seek(position);
+        boolean lap = file.readBoolean();
+        int size = file.readShort();
+        long lapPosition = file.getFilePointer();
+        long objID = file.readInt();
+
+        if (!lap || objID != obj.getID()) return false;
+
+        byte[] reg = new byte[size];
+        file.seek(lapPosition);
+        file.read(reg);
+
+        byte[] oldObj = obj.toByteArray();
+        file.seek(position);
+
+        if (oldObj.length <= size) {
+
+            file.writeBoolean(true);
+            file.writeShort(size);
+
+        } else {
+
+            file.writeBoolean(false);
+            file.seek(file.length());
+
+            hash.update(new PCVEnergyDrink(obj.getID(), file.getFilePointer()));
+
+            file.writeBoolean(true);
+            file.writeShort(oldObj.length);
+
         }
+
+        file.write(oldObj);
+        return true;
     }
 }

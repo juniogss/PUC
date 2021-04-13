@@ -1,1 +1,1 @@
-CRUD Genérico
+CRUD indexado
